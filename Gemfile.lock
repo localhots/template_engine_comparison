@@ -2,8 +2,14 @@ GEM
   remote: https://rubygems.org/
   specs:
     erubis (2.7.0)
+    execjs (2.0.2)
     haml (4.0.4)
       tilt
+    jade (0.1.1)
+      execjs
+      sprockets
+      tilt
+    sprockets (1.0.2)
     tilt (2.0.0)
 
 PLATFORMS
@@ -12,4 +18,5 @@ PLATFORMS
 DEPENDENCIES
   erubis
   haml
+  jade
   tilt
