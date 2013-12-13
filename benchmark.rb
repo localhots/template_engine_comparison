@@ -107,15 +107,15 @@ ENGINES = {
   },
 }
 
-banner 'Compilation (small) (%d runs)' % COMPILE_LOOPS
-benchmark(loops: COMPILE_LOOPS) do |name, attrs|
+banner 'Compilation (small template) - 1.000 runs'
+benchmark(loops: 1000) do |name, attrs|
   template_path = File.expand_path('../templates/%s/small.%s', __FILE__) % [name, attrs[:extension]]
   templates[name] = attrs[:class].new(template_path)
 end
 puts
 
-banner 'Render (small) (%d runs)' % RENDER_LOOPS
-benchmark(loops: RENDER_LOOPS) do |name, attrs|
+banner 'Render (small template) - 10.000 runs'
+benchmark(loops: 10_000) do |name, attrs|
   case name
   when :slim
     templates[name].render(OpenStruct.new(small_data))
@@ -125,15 +125,15 @@ benchmark(loops: RENDER_LOOPS) do |name, attrs|
 end
 puts
 
-banner 'Compilation (big) (%d runs)' % COMPILE_LOOPS
-benchmark(loops: COMPILE_LOOPS) do |name, attrs|
+banner 'Compilation (big template) - 1.000 runs'
+benchmark(loops: 1000) do |name, attrs|
   template_path = File.expand_path('../templates/%s/big.%s', __FILE__) % [name, attrs[:extension]]
   templates[name] = attrs[:class].new(template_path)
 end
 puts
 
-banner 'Render (big) (%d runs)' % 100
-benchmark(loops: 100) do |name, attrs|
+banner 'Render (big template, 1.5MB data) - 30 runs'
+benchmark(loops: 30) do |name, attrs|
   case name
   when :slim
     templates[name].render(OpenStruct.new(customers: big_data))
