@@ -9,6 +9,7 @@ require 'haml'
 require 'tilt/erb'
 require 'tilt/erubis'
 require 'tilt/haml'
+require 'tilt/handlebars'
 
 # Terminal settings
 TERMINAL_WIDTH = 60
@@ -43,6 +44,10 @@ ENGINES = {
   haml: {
     class: Tilt::HamlTemplate,
     layout: path_for('haml/layout.haml')
+  },
+  handlebars: {
+    class: Tilt::HandlebarsTemplate,
+    layout: path_for('handlebars/layout.hbs')
   }
 }
 
