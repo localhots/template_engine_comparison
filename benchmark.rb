@@ -10,6 +10,7 @@ require 'erubis'
 require 'haml'
 require 'slim'
 require 'liquid'
+require 'mustache'
 require 'tilt/erb'
 require 'tilt/erubis'
 require 'tilt/haml'
@@ -51,18 +52,34 @@ def benchmark params
   end
 end
 
+module Wrappers
+  class Base
+    attr_reader :tpl
+
+    def initialize path
+      @tpl = File.read(path)
+    end
+  end
+
+  class Mustache < Base
+    def render context, args = {}
+      ::Mustache.render(tpl, args)
+    end
+  end
+end
+
 ENGINES = {
   string: {
     class: Tilt::StringTemplate,
     extension: 'str'
   },
-  erb: {
-    class: Tilt::ERBTemplate,
-    extension: 'erb'
-  },
   erubis: {
     class: Tilt::ErubisTemplate,
     extension: 'erubis'
+  },
+  erb: {
+    class: Tilt::ERBTemplate,
+    extension: 'erb'
   },
   haml: {
     class: Tilt::HamlTemplate,
@@ -72,12 +89,15 @@ ENGINES = {
     class: Slim::Template,
     extension: 'slim'
   },
+  mustache: {
+    class: Wrappers::Mustache,
+    extension: 'mustache'
+  },
   liquid: {
     class: Tilt::LiquidTemplate,
     extension: 'liquid'
-  }
+  },
 }
-
 
 banner 'Compilation (small) (%d runs)' % COMPILE_LOOPS
 benchmark(loops: COMPILE_LOOPS) do |name, attrs|

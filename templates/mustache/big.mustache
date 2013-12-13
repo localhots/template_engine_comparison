@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Customers List</title>
+</head>
+<body>
+  {{# customers }}
+    <dl>
+      <dt>Name:</dt>
+      <dd>{{ name }}</dd>
+      <dt>Age:</dt>
+      <dd>{{ age }}</dd>
+      <dt>Address:</dt>
+      <dd>
+        {{ zip }}
+        {{ country }}
+        {{ city }}
+        {{ address }}
+      </dd>
+      <dt>Employer:</dt>
+      <dd>{{ employer }}</dd>
+    </dl>
+  {{/ customers }}
+</body>
+</html>
