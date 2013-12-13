@@ -6,6 +6,7 @@ require 'benchmark'
 
 require 'erubis'
 require 'haml'
+require 'slim'
 require 'tilt/erb'
 require 'tilt/erubis'
 require 'tilt/haml'
@@ -43,6 +44,10 @@ ENGINES = {
   haml: {
     class: Tilt::HamlTemplate,
     layout: path_for('haml/layout.haml')
+  },
+  slim: {
+    class: Slim::Template,
+    layout: path_for('slim/layout.slim')
   }
 }
 
