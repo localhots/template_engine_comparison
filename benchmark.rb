@@ -52,6 +52,10 @@ def benchmark params
 end
 
 ENGINES = {
+  string: {
+    class: Tilt::StringTemplate,
+    extension: 'str'
+  },
   erb: {
     class: Tilt::ERBTemplate,
     extension: 'erb'
