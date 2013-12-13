@@ -5,3 +5,5 @@ gem 'tilt'
 
 gem 'erubis'
 gem 'haml'
+gem 'slim'
+gem 'liquid'

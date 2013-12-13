@@ -13,13 +13,13 @@ end
 
 data = 1.upto(num_records).map do
   {
-    name: Faker::Name.name,
-    age: rand(20..50),
-    country: Faker::Address.country,
-    city: Faker::Address.city,
-    zip: Faker::Address.zip.to_i,
-    address: Faker::Address.street_address(true),
-    employer: Faker::Company.name
+    'name' => Faker::Name.name,
+    'age' => rand(20..50),
+    'country' => Faker::Address.country,
+    'city' => Faker::Address.city,
+    'zip' => Faker::Address.zip.to_i,
+    'address' => Faker::Address.street_address(true),
+    'employer' => Faker::Company.name
   }
 end
 

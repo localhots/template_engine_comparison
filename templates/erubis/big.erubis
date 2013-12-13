@@ -7,18 +7,18 @@
   <% customers.each do |customer| %>
     <dl>
       <dt>Name:</dt>
-      <dd><%= customer[:name] %></dd>
+      <dd><%= customer['name'] %></dd>
       <dt>Age:</dt>
-      <dd><%= customer[:age] %></dd>
+      <dd><%= customer['age'] %></dd>
       <dt>Address:</dt>
       <dd>
-        <%= customer[:zip] %>
-        <%= customer[:country] %>
-        <%= customer[:city] %>
-        <%= customer[:address] %>
+        <%= customer['zip'] %>
+        <%= customer['country'] %>
+        <%= customer['city'] %>
+        <%= customer['address'] %>
       </dd>
       <dt>Employer:</dt>
-      <dd><%= customer[:employer] %></dd>
+      <dd><%= customer['employer'] %></dd>
     </dl>
   <% end %>
 </body>

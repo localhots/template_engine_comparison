@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Customers List</title>
+</head>
+<body>
+  {% for customer in customers %}
+    <dl>
+      <dt>Name:</dt>
+      <dd>{{ customer.name }}</dd>
+      <dt>Age:</dt>
+      <dd>{{ customer.age }}</dd>
+      <dt>Address:</dt>
+      <dd>
+        {{ customer.zip }}
+        {{ customer.country }}
+        {{ customer.city }}
+        {{ customer.address }}
+      </dd>
+      <dt>Employer:</dt>
+      <dd>{{ customer.employer }}</dd>
+    </dl>
+  {% endfor %}
+</body>
+</html>

@@ -1,0 +1,19 @@
+doctype html
+html
+  head
+    title Customers List
+  body
+    - customers.each do |customer|
+      dl
+        dt Name:
+        dd = customer['name']
+        dt Age:
+        dd = customer['age']
+        dt Address:
+        dd
+          == customer['zip']
+          == customer['country']
+          == customer['city']
+          == customer['address']
+        dt Employer:
+        dd = customer['employer']

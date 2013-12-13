@@ -4,12 +4,16 @@ require 'rubygems'
 require 'bundler/setup'
 require 'benchmark'
 require 'yaml'
+require 'ostruct'
 
 require 'erubis'
 require 'haml'
+require 'slim'
+require 'liquid'
 require 'tilt/erb'
 require 'tilt/erubis'
 require 'tilt/haml'
+require 'tilt/liquid'
 
 # Terminal settings
 TERMINAL_WIDTH = 60
@@ -59,6 +63,14 @@ ENGINES = {
   haml: {
     class: Tilt::HamlTemplate,
     extension: 'haml'
+  },
+  slim: {
+    class: Slim::Template,
+    extension: 'slim'
+  },
+  liquid: {
+    class: Tilt::LiquidTemplate,
+    extension: 'liquid'
   }
 }
 
@@ -72,7 +84,12 @@ puts
 
 banner 'Render (small) (%d runs)' % RENDER_LOOPS
 benchmark(loops: RENDER_LOOPS) do |name, attrs|
-  templates[name].render(Object, small_data)
+  case name
+  when :slim
+    templates[name].render(OpenStruct.new(small_data))
+  else
+    templates[name].render(Object, small_data)
+  end
 end
 puts
 
@@ -83,8 +100,13 @@ benchmark(loops: COMPILE_LOOPS) do |name, attrs|
 end
 puts
 
-banner 'Render (big) (%d runs)' % RENDER_LOOPS
+banner 'Render (big) (%d runs)' % 100
 benchmark(loops: 100) do |name, attrs|
-  templates[name].render(Object, customers: big_data)
+  case name
+  when :slim
+    templates[name].render(OpenStruct.new(customers: big_data))
+  else
+    templates[name].render(Object, {customers: big_data})
+  end
 end
 puts
