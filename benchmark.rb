@@ -9,6 +9,7 @@ require 'haml'
 require 'tilt/erb'
 require 'tilt/erubis'
 require 'tilt/haml'
+require 'jade'
 
 # Terminal settings
 TERMINAL_WIDTH = 60
@@ -43,6 +44,10 @@ ENGINES = {
   haml: {
     class: Tilt::HamlTemplate,
     layout: path_for('haml/layout.haml')
+  },
+  jade: {
+    class: Jade::Template,
+    layout: path_for('jade/layout.jade')
   }
 }
 
