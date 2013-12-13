@@ -31,7 +31,7 @@ unless File.exist?(big_data_file)
   raise 'Big data file not found. Please generate it with "./fakedata.rb 10000 > data/big.yml"'
 end
 
-small_data = {title: 'Greetings!', username: '%username%'}
+small_data = {window_title: 'Greetings!', username: '%username%'}
 big_data = YAML.load_file(big_data_file)
 
 def banner title
@@ -96,6 +96,14 @@ ENGINES = {
   liquid: {
     class: Tilt::LiquidTemplate,
     extension: 'liquid'
+  },
+  markaby: {
+    class: Tilt::MarkabyTemplate,
+    extension: 'mab'
+  },
+  builder: {
+    class: Tilt::BuilderTemplate,
+    extension: 'builder'
   },
 }
 

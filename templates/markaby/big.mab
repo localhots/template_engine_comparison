@@ -1,0 +1,26 @@
+html do
+  head do
+    title 'Customers List'
+  end
+  body do
+    customers.each do |customer|
+      dl do
+        dt 'Name:'
+        dd customer['name']
+        dt 'Age:'
+        dd customer['age']
+        dt 'Address:'
+        dd do
+          [
+            customer['zip'],
+            customer['country'],
+            customer['city'],
+            customer['address']
+          ].join("\n")
+        end
+        dt 'Employer:'
+        dd customer['employer']
+      end
+    end
+  end
+end
