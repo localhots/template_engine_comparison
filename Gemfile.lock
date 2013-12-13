@@ -4,6 +4,7 @@ GEM
     erubis (2.7.0)
     haml (4.0.4)
       tilt
+    mustache (0.99.5)
     tilt (2.0.0)
 
 PLATFORMS
@@ -12,4 +13,5 @@ PLATFORMS
 DEPENDENCIES
   erubis
   haml
+  mustache
   tilt
