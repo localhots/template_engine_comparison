@@ -3,6 +3,7 @@
 require 'rubygems'
 require 'bundler/setup'
 require 'benchmark'
+require 'yaml'
 
 require 'erubis'
 require 'haml'
@@ -16,14 +17,17 @@ BM_WIDTH = 46
 
 # Benchmark settings
 COMPILE_LOOPS = 1000
-RENDER_LOOPS = 10000
+RENDER_LOOPS = 1000
 
-$templates = {}
-$template_params = {title: 'Greetings!', username: '%username%'}
+templates = {}
+big_data_file = File.expand_path('../data/big.yml', __FILE__)
 
-def path_for template
-  File.expand_path('../templates/' + template, __FILE__)
+unless File.exist?(big_data_file)
+  raise 'Big data file not found. Please generate it with "./fakedata.rb 10000 > data/big.yml"'
 end
+
+small_data = {title: 'Greetings!', username: '%username%'}
+big_data = YAML.load_file(big_data_file)
 
 def banner title
   puts '#' * TERMINAL_WIDTH
@@ -31,40 +35,56 @@ def banner title
   puts '#' * TERMINAL_WIDTH
 end
 
+def benchmark params
+  raise 'No block given' unless block_given?
+
+  Benchmark.bm(TERMINAL_WIDTH - BM_WIDTH) do |x|
+    ENGINES.each do |name, attrs|
+      x.report(name) do
+        params[:loops].times{ yield(name, attrs) }
+      end
+    end
+  end
+end
+
 ENGINES = {
   erb: {
     class: Tilt::ERBTemplate,
-    layout: path_for('erb/layout.erb')
+    extension: 'erb'
   },
   erubis: {
     class: Tilt::ErubisTemplate,
-    layout: path_for('erubis/layout.erubis')
+    extension: 'erubis'
   },
   haml: {
     class: Tilt::HamlTemplate,
-    layout: path_for('haml/layout.haml')
+    extension: 'haml'
   }
 }
 
-banner 'Compilation (%d runs)' % COMPILE_LOOPS
-Benchmark.bm(TERMINAL_WIDTH - BM_WIDTH) do |x|
-  ENGINES.each do |name, attrs|
-    x.report(name) do
-      COMPILE_LOOPS.times do
-        $templates[name] = attrs[:class].new(attrs[:layout])
-      end
-    end
-  end
+
+banner 'Compilation (small) (%d runs)' % COMPILE_LOOPS
+benchmark(loops: COMPILE_LOOPS) do |name, attrs|
+  template_path = File.expand_path('../templates/%s/small.%s', __FILE__) % [name, attrs[:extension]]
+  templates[name] = attrs[:class].new(template_path)
 end
 puts
 
-banner 'Render (%d runs)' % RENDER_LOOPS
-Benchmark.bm(TERMINAL_WIDTH - BM_WIDTH) do |x|
-  ENGINES.each do |name, attrs|
-    x.report(name) do
-      RENDER_LOOPS.times do
-        $templates[name].render(Object, $template_params)
-      end
-    end
-  end
+banner 'Render (small) (%d runs)' % RENDER_LOOPS
+benchmark(loops: RENDER_LOOPS) do |name, attrs|
+  templates[name].render(Object, small_data)
 end
+puts
+
+banner 'Compilation (big) (%d runs)' % COMPILE_LOOPS
+benchmark(loops: COMPILE_LOOPS) do |name, attrs|
+  template_path = File.expand_path('../templates/%s/big.%s', __FILE__) % [name, attrs[:extension]]
+  templates[name] = attrs[:class].new(template_path)
+end
+puts
+
+banner 'Render (big) (%d runs)' % RENDER_LOOPS
+benchmark(loops: 100) do |name, attrs|
+  templates[name].render(Object, customers: big_data)
+end
+puts

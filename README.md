@@ -1,10 +1,16 @@
 # Template Engine Comparison
 
 ## Running
-```
+```bash
+# Prepare workspace
 git clone git@github.com:localhots/template_engine_comparison.git
 cd template_engine_comparison
 bundle install
+
+# Generate data for templates
+./fakedata.rb 10000 > data/big.yml
+
+# Run benchmarks
 ./benchmark.rb
 ```
 
