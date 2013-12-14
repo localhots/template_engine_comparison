@@ -53,6 +53,10 @@ Workbench::Benchmark.describe_engines(
     class: Workbench::Wrappers::Handlebars,
     extension: 'handlebars'
   },
+  # parkaby: {
+    # class: Workbench::Wrappers::Parkaby,
+    # extension: 'mab'
+  # },
 )
 
 templates = {}
