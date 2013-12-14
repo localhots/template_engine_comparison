@@ -9,33 +9,25 @@ $ ./fakedata.rb 10000 > data/big.yml
 AGRR
 
 Workbench::Benchmark.describe_engines(
-  string: {
-    class: Tilt::StringTemplate,
-    extension: 'str'
-  },
-  erubis: {
-    class: Tilt::ErubisTemplate,
-    extension: 'erubis'
-  },
-  tenjin: {
-    class: Workbench::Wrappers::Tenjin,
-    extension: 'rbhtml'
+  builder: {
+    class: Tilt::BuilderTemplate,
+    extension: 'builder'
   },
   erb: {
     class: Tilt::ERBTemplate,
     extension: 'erb'
   },
+  erubis: {
+    class: Tilt::ErubisTemplate,
+    extension: 'erubis'
+  },
   haml: {
     class: Tilt::HamlTemplate,
     extension: 'haml'
   },
-  slim: {
-    class: Workbench::Wrappers::Slim,
-    extension: 'slim'
-  },
-  mustache: {
-    class: Workbench::Wrappers::Mustache,
-    extension: 'mustache'
+  handlebars: {
+    class: Workbench::Wrappers::Handlebars,
+    extension: 'handlebars'
   },
   liquid: {
     class: Tilt::LiquidTemplate,
@@ -45,21 +37,25 @@ Workbench::Benchmark.describe_engines(
     class: Tilt::MarkabyTemplate,
     extension: 'mab'
   },
-  builder: {
-    class: Tilt::BuilderTemplate,
-    extension: 'builder'
+  mustache: {
+    class: Workbench::Wrappers::Mustache,
+    extension: 'mustache'
   },
-  handlebars: {
-    class: Workbench::Wrappers::Handlebars,
-    extension: 'handlebars'
+  slim: {
+    class: Workbench::Wrappers::Slim,
+    extension: 'slim'
   },
-  # parkaby: {
-    # class: Workbench::Wrappers::Parkaby,
-    # extension: 'mab'
-  # },
+  string: {
+    class: Tilt::StringTemplate,
+    extension: 'str'
+  },
   tagz: {
     class: Workbench::Wrappers::Tagz,
-    extension: 'tagz'
+    extension: 'rb'
+  },
+  tenjin: {
+    class: Workbench::Wrappers::Tenjin,
+    extension: 'rbhtml'
   },
 )
 
