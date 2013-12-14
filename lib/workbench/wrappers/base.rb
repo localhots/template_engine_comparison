@@ -1,9 +1,11 @@
-module Wrappers
-  class Base
-    attr_reader :tpl
+module Workbench
+  module Wrappers
+    class Base
+      attr_reader :tpl
 
-    def initialize path
-      @tpl = File.read(path)
+      def initialize path
+        @tpl = File.read(path)
+      end
     end
   end
 end
