@@ -11,5 +11,8 @@ gem 'mustache'
 gem 'markaby'
 gem 'tenjin'
 gem 'handlebars'
-# gem 'liquor'
-# gem 'parkaby', github: 'judofyr/parkaby'
+gem 'tagz'
+
+# gem 'liquor' # No docs - no wrapper
+# gem 'parkaby', github: 'judofyr/parkaby' # No gemspec
+# gem 'laminate' # No gemspec, dead

@@ -57,6 +57,10 @@ Workbench::Benchmark.describe_engines(
     # class: Workbench::Wrappers::Parkaby,
     # extension: 'mab'
   # },
+  tagz: {
+    class: Workbench::Wrappers::Tagz,
+    extension: 'tagz'
+  },
 )
 
 templates = {}

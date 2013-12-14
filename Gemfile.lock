@@ -23,6 +23,7 @@ GEM
     slim (2.0.2)
       temple (~> 0.6.6)
       tilt (>= 1.3.3, < 2.1)
+    tagz (9.9.2)
     temple (0.6.7)
     tenjin (0.7.1)
     therubyracer (0.12.0)
@@ -42,5 +43,6 @@ DEPENDENCIES
   markaby
   mustache
   slim
+  tagz
   tenjin
   tilt

@@ -3,7 +3,7 @@ html {
     title 'Customers List'
   }
   body {
-    customers.each do |customer|
+    customers.each{ |customer|
       dl {
         dt 'Name:'
         dd customer['name']
