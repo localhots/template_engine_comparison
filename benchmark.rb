@@ -9,10 +9,6 @@ $ ./fakedata.rb 10000 > data/big.yml
 AGRR
 
 Workbench::Benchmark.describe_engines(
-  tenjin: {
-    class: Workbench::Wrappers::Tenjin,
-    extension: 'rbhtml'
-  },
   string: {
     class: Tilt::StringTemplate,
     extension: 'str'
@@ -20,6 +16,10 @@ Workbench::Benchmark.describe_engines(
   erubis: {
     class: Tilt::ErubisTemplate,
     extension: 'erubis'
+  },
+  tenjin: {
+    class: Workbench::Wrappers::Tenjin,
+    extension: 'rbhtml'
   },
   erb: {
     class: Tilt::ERBTemplate,
@@ -48,6 +48,10 @@ Workbench::Benchmark.describe_engines(
   builder: {
     class: Tilt::BuilderTemplate,
     extension: 'builder'
+  },
+  handlebars: {
+    class: Workbench::Wrappers::Handlebars,
+    extension: 'handlebars'
   },
 )
 

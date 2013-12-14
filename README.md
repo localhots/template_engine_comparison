@@ -6,6 +6,7 @@
 - [ERB](http://ruby-doc.org/stdlib-2.0.0/libdoc/erb/rdoc/ERB.html)
 - [Erubis](http://www.kuwata-lab.com/erubis/)
 - [Haml](http://haml.info/)
+- [Handlebars](https://github.com/cowboyd/handlebars.rb) (JS bingings)
 - [Liquid](http://liquidmarkup.org/)
 - [Markaby](http://markaby.github.io/)
 - [Mustache](https://github.com/defunkt/mustache)
