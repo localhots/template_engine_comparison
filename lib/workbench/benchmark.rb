@@ -12,10 +12,11 @@ module Workbench
     def initialize args, &block
       puts '#' * TERMINAL_WIDTH
       puts '##' + args[:title].center(TERMINAL_WIDTH - 4) + '##'
-      puts '#' * TERMINAL_WIDTH 
+      puts '#' * TERMINAL_WIDTH
 
       ::Benchmark.bm(TERMINAL_WIDTH - BM_WIDTH) do |benchmark|
         @@engines.each do |name, attrs|
+          GC.start
           benchmark.report(name) do
             args[:loops].times{ yield(name, attrs) }
           end
