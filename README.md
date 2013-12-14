@@ -2,18 +2,19 @@
 #### Ruby implementations.
 
 ## Competitors
-- Builder
-- ERB
-- Erubis
-- Haml
-- Liquid
-- Markaby
-- Mustache
-- Slim
+- [Builder](https://github.com/jimweirich/builder)
+- [ERB](http://ruby-doc.org/stdlib-2.0.0/libdoc/erb/rdoc/ERB.html)
+- [Erubis](http://www.kuwata-lab.com/erubis/)
+- [Haml](http://haml.info/)
+- [Liquid](http://liquidmarkup.org/)
+- [Markaby](http://markaby.github.io/)
+- [Mustache](https://github.com/defunkt/mustache)
+- [Slim](http://slim-lang.com/)
+- [Tenjin](http://www.kuwata-lab.com/tenjin/)
 
 ... and our special guest ...
 
-- String interpolation
+- [String interpolation](http://en.wikipedia.org/wiki/String_interpolation#Ruby)
 
 ## Running
 ```bash
